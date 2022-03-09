@@ -1,0 +1,24 @@
+1. ¿Qué es una dependencia en Spring?
+Una dependencia en Spring es aquella características u objeto pequeño que representa una parte para dar cumplimento a un objetivo. 
+
+2. ¿Cuál es la diferencia entre Inyección de dependencias e Inversión de control?
+La inversión de control conocida como IoC, permite romper el flujo normal de un programa y transferir el control a un contenedor o framework; un ejemplo de ello puede ser la anotación @RestController, donde al anotar una clase controlador con ella, no se requiere que esta sea llamada en el método principal del programa ya que Spring toma el control y se encarga de ello. Por otra parte, la inyección de dependencias (ID) consiste en comunicar una o múltiples dependencias entre sí para cumplir un objetivo. 
+
+3. ¿Cómo aplica Spring la inyección de dependencias?
+En Spring la ID es el patrón o principio que implementa IoC para hacer uso de esas dependencias previamente inicializadas.
+
+4. ¿Cuál es la diferencia entre la anotación @Bean y @Component en Spring?
+La principal diferencia entre estas dos anotaciones radica que @Bean es usado para los métodos y @Component se usa para las clases, lo que nos permite es realizar un escaneo de estos métodos o clases para poder ser inyectados.  
+
+5. ¿Cómo hago para suplir una dependencia en Spring si no tengo acceso a la clase para ponerle una anotación?
+Mediante la inyección de dependencias, haciendo uso de la anotación @Autowired. 
+
+6. ¿Cuál es la diferencia entre un WAR y un JAR?
+Los archivos WAR requieren de un servidor de aplicaciones para su ejecución, mientras que, los archivos JAR pueden ser ejecutados sin un servidor de aplicaciones. 
+
+7. ¿Cuál es la diferencia entre “implementation” y “testImplementation” en Gradle?
+La dependencia imlementation en Gradle, es el entorno donde el aplicativo se encuentra, mientras que, la dependencia TestImplementation es usada para el entorno de pruebas. 
+
+8. ¿Qué función tiene un servidor de aplicaciones a la hora de desplegar una aplicación?
+En el momento que una aplicación sea desplegada, el servidor de aplicaciones permitirá gestionar y ejecutar todos los componentes de dicha aplicación. 
+
