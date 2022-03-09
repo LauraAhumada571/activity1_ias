@@ -1,0 +1,24 @@
+1.	¿Cuál es la relación entre el protocolo TCP/IP y el HTTPS?
+La relación entre estos dos protocolos es que ambos me permiten realizar la transferencia 	de mensajes, sin embargo, TCP/IP funciona a un nivel más bajo y permite comunicarse 	mediante el formato que establece HTTP
+
+2.	En la URL “localhost:8080/services/data”, ¿Cuál es el recurso al que se está intentando acceder?
+El recurso al cual se esta intentado acceder es al services/data
+
+3.	¿Para qué sirven los Query Params en una petición HTTP?
+Describir la petición HTTP
+
+4.	¿Para qué sirven los controladores en un sistema?
+Los controladores son los puntos de entrada de un sistema que permite recibir la información, validarla, autorizarla y ejecutarla ejecutar la determina operación requerida en el sistema. 
+
+5.	¿Por qué un controlador debe hacer validaciones de datos?
+Porque se deben validar los datos de entrada sobre la petición que se está a haciendo al sistema para saber si son correctos y si el proceso se puede ejecutar. 
+
+6.	¿Cuál es el fin de tener múltiples representaciones de un mismo objeto? por ejemplo: Product, ProductDTO, Product DBO
+Porque cada capa requiere un tratamiento específico de los datos, en algunos casos pueden tener más o menos variables que en otra capa, para eso eso existen las diferentes representaciones de un mismo objeto. 
+
+7.	¿Por qué es el dominio la capa más importante del sistema?
+Porque es allí donde se puede decir al sistema que debe hacer y con qué tipo de 	información, esta capa no tiene conocimiento de las capas externas, pero todas conducen a él. 
+  
+8.	Si necesito agregar anotaciones de Hibernate para persistir la información de un servicio de mantenimiento a una base de datos relacional, ¿En qué clase deberían ir esas anotaciones?
+Estas anotaciones deberían ir en las clases de repository 
+
