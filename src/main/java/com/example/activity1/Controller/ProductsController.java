@@ -25,4 +25,5 @@ public class ProductsController {
     public String deleteProduct(){
         return "Este es un método para eliminar un producto";
     }
+
 }
