@@ -1,4 +1,4 @@
-package com.example.activity1.Controller.models;
+package com.example.activity1.Infrastructure.Controller.models;
 
 import java.time.LocalDateTime;
 

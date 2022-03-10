@@ -1,4 +1,4 @@
-package com.example.activity1.Controller;
+package com.example.activity1.Infrastructure.Controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

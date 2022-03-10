@@ -1,6 +1,6 @@
-package com.example.activity1.Repositories.models;
+package com.example.activity1.Infrastructure.Gateways.Repositories.models;
 
-import com.example.activity1.Domain.*;
+import com.example.activity1.Core.Domain.*;
 
 import java.time.LocalDateTime;
 

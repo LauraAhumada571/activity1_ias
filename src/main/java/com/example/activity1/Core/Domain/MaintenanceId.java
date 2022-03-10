@@ -1,4 +1,4 @@
-package com.example.activity1.Domain;
+package com.example.activity1.Core.Domain;
 
 import org.apache.commons.lang3.Validate;
 

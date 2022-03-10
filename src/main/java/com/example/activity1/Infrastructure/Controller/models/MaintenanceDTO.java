@@ -1,8 +1,6 @@
-package com.example.activity1.Controller.models;
+package com.example.activity1.Infrastructure.Controller.models;
 
-import com.example.activity1.Domain.*;
-
-import java.time.LocalDateTime;
+import com.example.activity1.Core.Domain.MaintenanceService;
 
 public class MaintenanceDTO {
     private String idMaintenance;
