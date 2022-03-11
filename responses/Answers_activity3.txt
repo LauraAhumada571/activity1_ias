@@ -1,0 +1,55 @@
+1.	Organización de paquetes y código
+1.	¿Qué son los servicios de dominio?
+Estos servicios son aquellos que no requieren de datos adicionales para realizar su operación, es decir, no van a consultar a ninguna parte y son capaces de calcular el proceso y devolver un resultado. 
+
+2.	¿Qué representan los “Gateways”?
+Los gateways con una representación de las interfaces de comunicación con los sistemas externos.
+
+3.	¿Cuáles son las partes que componen un “Gateway”?
+La especificación y la implementación 
+
+4.	¿Qué tipo de clases están dentro del paquete “Core” de la aplicación?
+Allí podemos encontrar dos tipos de clases; las de las especificaciones de los gateways que son interfaces y las de los servicios del dominio. 
+
+5.	¿Cuál es la diferencia entre el paquete Core y el paquete Infrastructure?
+	
+
+6.	¿Cuál es el fin del paquete “Share”?
+Allí se configuran todas las interfaces y clases que van a ser compartidas en la aplicación y estas no son parte del dominio del negocio. 
+
+7.	¿Cómo se diferencia un servicio de aplicación y un servicio de dominio?
+Los servicios de dominio son los que se encargan de la lógica del negocio y son funciones puras, mientras que los servicios de aplicación son los encargados de la comunicación entre las capas del sistema. 
+
+8.	¿Dónde debe ir la configuración de la conexión a una base de datos?
+	Esta configuración debe ir en la configuración de la capa de infraestructura. 
+
+2.	Estructuras de control
+•	¿Para qué sirve la estructura de control “try-with-resources” y cómo se diferencia de un “try” simple?
+Permite asegurar que los recursos se cierren de manera confiable sin afectar la información que allí viaja, mientras que, en un try simple, los recursos pueden quedar abiertos y esto hace que se vea afectado el rendimiento del programa. 
+	
+3.	Java and SQL
+•	¿Para qué sirve un DataSource?
+Permite establecer la conexión con la base de datos y establecer los hilos de comunicación entre la aplicación y la base de datos. 
+
+•	¿Qué desventajas existen de utilizar el DataSource nativo de Java vs una librería como HikariCP?
+La principal desventaja es que el Datasource nativo de java consume más recursos para la apertura y el cierre de hilos en las conexiones con las bases de datos, mientras que con HikariCP estos recursos se optimizan. 
+
+•	En términos simples: ¿Qué es un ResultSet?
+Almacena un conjunto de resultados que devuelve una consulta SQL y facilita recorrearlo para hacer operaciones con ella. 
+
+•	¿Por qué es una mala práctica concatenar cadenas de texto y variables para generar una sentencia SQL?
+Porque en el momento realizar este tipo de concatenaciones se puede generar un método de infiltración de código mediante SQL inyección, debido a que, un ciberdelincuente puede enviar una sería de consultas para alterar la base de datos. 
+
+4.	Spring
+•	¿En cuáles casos es recomendable utilizar la anotación “@Configuration”?
+En aconsejable hacer uso de esta anotación cuando se define una clase de configuración para el framework.  
+
+•	¿Se puede utilizar la anotación “@Bean” en una clase?
+No, las anotaciones @Bean son usadas para los métodos o funciones del sistema y va acompañado de @Configuration para que pueda ser escaneado. 
+
+•	¿Es un Bean de Spring lo mismo que un Bean de Java?
+No, son conceptos diferentes, los Bean de Spring son aquellas anotaciones que se realizan en los métodos para las configuraciones, mientras que, los Java Bean son la definición de una clase con una estructura especifica.  
+
+5.	Cositas Varias
+•	¿Qué es un Java Bean?
+Es la definición de una clase con la siguiente estructura: constructor con todos los argumentos, constructor sin argumentos, getters and setters
