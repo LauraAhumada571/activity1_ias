@@ -9,6 +9,7 @@ import com.sun.tools.javac.Main;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.List;
 import java.util.Map;
@@ -97,24 +98,44 @@ public class MaintenanceController {
         }
     }
 
-    @RequestMapping(value = "/services", method = RequestMethod.PUT)
+    @RequestMapping(value = "/services/{id}", method = RequestMethod.PUT)
     public ResponseEntity<?> updateMaintenance(
-            @PathVariable("id") String maintenanceId
-    ){
+            @PathVariable("id") String maintenanceId,
+            @RequestBody MaintenanceInput maintenanceInput
+    ) {
         Optional<MaintenanceDTO> maintenance = services.getMaintenance(maintenanceId);
 
-        if(maintenance.isPresent()){
-            MaintenanceId id = services.deleteMaintenance(maintenanceId);
-            return ResponseEntity.ok(id);
-        } else {
+        try {
+            if (maintenance.isPresent()) {
+                MaintenanceInput update_maintenance = services.updateMaintenance(maintenanceId, maintenanceInput);
+                return ResponseEntity.ok(update_maintenance);
+            } else {
+                ApplicationError error = new ApplicationError(
+                        "ResourceNotFound",
+                        "Product with id not found",
+                        Map.of("id", maintenanceId)
+                );
+                return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                        .body(error);
+            }
+        } catch (IllegalArgumentException | NullPointerException e) {
             ApplicationError error = new ApplicationError(
-                    "ResourceNotFound",
-                    "Product with id not found",
-                    Map.of("id", maintenanceId)
+                    "InputDataValidationError",
+                    "Bad input data",
+                    Map.of(
+                            "error", e.getMessage()
+                    )
             );
-            return ResponseEntity.status(HttpStatus.NOT_FOUND)
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(error);
+        } catch (Exception e) {
+            ApplicationError error = new ApplicationError(
+                    "SystemError",
+                    e.getMessage(),
+                    Map.of()
+            );
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(error);
         }
     }
-
 }

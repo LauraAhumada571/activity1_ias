@@ -64,4 +64,8 @@ public class MaintenanceServices {
     public MaintenanceId deleteMaintenance(String maintenanceId) {
         return maintenanceRepository.deleteMaintenance(new MaintenanceId(maintenanceId));
     }
+
+    public MaintenanceInput updateMaintenance(String maintenanceId, MaintenanceInput maintenanceInput){
+        return maintenanceRepository.updateMaintenance(new MaintenanceId(maintenanceId), maintenanceInput);
+    }
 }

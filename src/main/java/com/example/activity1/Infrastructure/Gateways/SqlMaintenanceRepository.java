@@ -4,6 +4,7 @@ import com.example.activity1.Core.Domain.MaintenanceId;
 import com.example.activity1.Core.Domain.MaintenanceService;
 import com.example.activity1.Core.Gateways.MaintenanceRepository;
 import com.example.activity1.Infrastructure.Controller.models.MaintenanceDTO;
+import com.example.activity1.Infrastructure.Controller.models.MaintenanceInput;
 import com.example.activity1.Infrastructure.Gateways.Repositories.models.MaintenanceDBO;
 import com.example.activity1.shared.domain.PageQuery;
 import org.springframework.stereotype.Repository;
@@ -23,7 +24,7 @@ import java.util.TimeZone;
 @Repository
 public class SqlMaintenanceRepository implements MaintenanceRepository {
     private final DataSource dataSource;
-
+    private final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
     public SqlMaintenanceRepository(DataSource dataSource) {
         this.dataSource = dataSource;
     }
@@ -82,7 +83,6 @@ public class SqlMaintenanceRepository implements MaintenanceRepository {
         try (Connection connection =  dataSource.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)){
 
-            DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
             String parsedStartDateTime = maintenanceService.getStartDateTime().getValue().format(dateTimeFormatter);
             String parsedEndDateTime = maintenanceService.getEndDateTime().getValue().format(dateTimeFormatter);
 
@@ -111,4 +111,27 @@ public class SqlMaintenanceRepository implements MaintenanceRepository {
         }
         return maintenanceId;
     }
+
+    @Override
+    public MaintenanceInput updateMaintenance(MaintenanceId maintenanceId, MaintenanceInput maintenanceInput) {
+        String sql = "UPDATE maintenance SET start_date_time = ?, end_date_time = ?, description = ? WHERE maintenance_id = ?";
+        try(Connection connection =  dataSource.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+
+            String parsedStartDateTime = maintenanceInput.getStartDateTime().format(dateTimeFormatter);
+            String parsedEndDateTime = maintenanceInput.getEndDateTime().format(dateTimeFormatter);
+
+            preparedStatement.setTimestamp(1, Timestamp.valueOf(parsedStartDateTime));
+            preparedStatement.setTimestamp(2, Timestamp.valueOf(parsedEndDateTime));
+            preparedStatement.setString(3, maintenanceInput.getDescription());
+            preparedStatement.setString(4, maintenanceId.toString());
+
+            preparedStatement.executeUpdate();
+        }catch (SQLException exception){
+            throw new RuntimeException("Error querying database", exception);
+        }
+        return null;
+    }
+
+
 }
