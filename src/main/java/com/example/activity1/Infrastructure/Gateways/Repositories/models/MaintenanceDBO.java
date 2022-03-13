@@ -2,6 +2,8 @@ package com.example.activity1.Infrastructure.Gateways.Repositories.models;
 
 import com.example.activity1.Core.Domain.*;
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDateTime;
 
 public class MaintenanceDBO {
@@ -36,6 +38,16 @@ public class MaintenanceDBO {
                 maintenanceservice.getEndDateTime().getValue(),
                 maintenanceservice.getDescription().toString()
         );
+    }
+
+    public static MaintenanceDBO fromResulSet(ResultSet resultSet) throws SQLException {
+        MaintenanceDBO dbo = new MaintenanceDBO();
+        dbo.setIdMaintenance(resultSet.getString("maintenance_id"));
+        dbo.setStartDateTime(resultSet.getTimestamp("start_date_time").toLocalDateTime());
+        dbo.setEndDateTime(resultSet.getTimestamp("end_date_time").toLocalDateTime());
+        dbo.setDescription(resultSet.getString("description"));
+
+        return dbo;
     }
 
     public String getIdMaintenance() {

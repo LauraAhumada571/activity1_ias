@@ -14,4 +14,5 @@ public interface MaintenanceRepository {
 
     void store (MaintenanceService maintenanceService);
 
+    MaintenanceId deleteMaintenance(MaintenanceId maintenanceId);
 }
