@@ -12,7 +12,7 @@ La especificación y la implementación
 Allí podemos encontrar dos tipos de clases; las de las especificaciones de los gateways que son interfaces y las de los servicios del dominio. 
 
 5.	¿Cuál es la diferencia entre el paquete Core y el paquete Infrastructure?
-	
+La diferencia es que en el paquete Core esta todo lo relacionado con el negocio, donde se encunetran los servcios de dominio y los gateways de aplicación, mientras que el Instrafuture es la capa que permite tener todo lo relacionado con el aplicativo. 
 
 6.	¿Cuál es el fin del paquete “Share”?
 Allí se configuran todas las interfaces y clases que van a ser compartidas en la aplicación y estas no son parte del dominio del negocio. 
